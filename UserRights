@@ -1,0 +1,18 @@
+The ImpEx extension allows you to modify access rights for users and user groups.
+
+You can easily define user rights in ImpEx using the syntax demonstrated in the following example.
+
+$START_USERRIGHTS
+			Type;UID;MemberOfGroups;Password;Target;read;change;create;delete;change_perm
+			UserGroup;impexgroup;employeegroup;
+			;;;;Product;+;+;+;+;-
+			Customer;impex-demo;impexgroup;1234;
+			$END_USERRIGHTS
+      
+The following describes each line of the syntax:
+
+The $START_USERRIGHTS statement in line 1 indicates that every line until the $END_USERRIGHTS statement in line 6 isn’t an ImpEx specific one, instead all lines between the two statements are redirected to the user rights management (accessManager).
+The second line is the header and defines the attributes that are to be set. This header is specific for the user rights management and doesn’t support any features of ImpEx-like modifiers.
+The third line sets the usergroup with the name impexgroup that is a MemberOfGroups (subgroup) of employeegroup as an item where you modify given access rights. The item is the current one until the next item definition. If you forget to set a type (here UserGroup), the action will have no effect.
+The fourth line sets the permissions for impexgroup: + allows, - denies the respective access right. A skipped value specifies no override, that is, use the inherited setting.      
+      
