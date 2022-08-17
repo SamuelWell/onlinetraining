@@ -16,3 +16,9 @@ The second line is the header and defines the attributes that are to be set. Thi
 The third line sets the usergroup with the name impexgroup that is a MemberOfGroups (subgroup) of employeegroup as an item where you modify given access rights. The item is the current one until the next item definition. If you forget to set a type (here UserGroup), the action will have no effect.
 The fourth line sets the permissions for impexgroup: + allows, - denies the respective access right. A skipped value specifies no override, that is, use the inherited setting.      
       
+
+You have to use all of the columns Type, UID, MemberOfGroups, and Target even if you don’t want to set all the values. The permission columns at the header line don’t matter in any case, but you can write them down to remember the meaning of the permission values but they aren’t parsed. So if you change the permission columns at the header line, this has no effect.
+
+In addition, you need to specify values for each of the potential access rights at the value line in exactly the order as in the example. The ImpEx framework implicitly expects an access rights line to contain values for all potential access rights in fixed order - even for attribute access rights, where only Read and Change are available.
+
+Skipping one of these columns results in an error message like This isn’t a CSV file with principal permissions! Aborting..., and the import fails.
