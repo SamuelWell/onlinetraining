@@ -1,0 +1,1 @@
+azurite --silent --location ~/Development/azurite --debug ~/Development/azurite/debug.log
